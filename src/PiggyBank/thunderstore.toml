@@ -7,7 +7,7 @@ repository = "https://thunderstore.io"
 [package]
 namespace = "OracleTeam"
 name = "PiggyBank"
-description = "TODO: Fill in short mod description."
+description = "Deposit/withrdaw items between runs"
 websiteUrl = "" # TODO: Add a link to your mod repository here (optional)
 containsNsfwContent = false
 
@@ -49,4 +49,4 @@ communities = [ "peak", ]
 [publish.categories]
 # See categories at:
 # https://thunderstore.io/api/experimental/community/peak/category/
-peak = [ "mods", ]
+peak = [ "mods", "all", "items" ]
