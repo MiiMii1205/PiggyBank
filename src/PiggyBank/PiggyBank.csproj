@@ -7,4 +7,14 @@
         <Version>0.1.0</Version>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="PEAKModding.PEAKLib.Core" Version="*"/>
+        <PackageReference Include="PEAKModding.PEAKLib.Items" Version="*"/>
+        <PackageReference Update="Hamunii.BepInEx.AutoPlugin" Version="*"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="bundles\" />
+    </ItemGroup>
+
 </Project>
