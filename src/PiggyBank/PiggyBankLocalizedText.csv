@@ -1,0 +1,4 @@
+CURRENT_LANGUAGE,English,Français,Italiano,Deutsch,Español (España),Español (LatAm),Português (BR),Русский,Українська,简体中文,繁体中文,日本語,한국어,Polski,Türkçe,ENDLINE
+NAME_PIGGY BANK,PIGGY BANK,TIRELIRE,SALVADANAIO,SPARDOSE,ALCANCÍA,ALCANCÍA,COFRINHO,КОПИЛКА,СКАРБНИЧКА,扑满,撲滿,貯金箱,저금통,SKARBONKA,KUMBARA,ENDLINE
+WITHDRAWITEM,withdraw<br>#,retirer<br>#,prelevare<br>#,abheben<br>#,sacar<br>#,retirar<br>#,retirar<br>#,снять<br>#,зняти<br>#,提款<br>#,提款<br>#,引き出す<br>#,출금<br>#,wypłacić<br>#,para çekmek<br>#,ENDLINE
+DEPOSITITEM,deposit<br>#,déposer<br>#,depositare<br>#,einzahlen<br>#,depositar<br>#,depositar<br>#,depositar<br>#,внести<br>#,внести<br>#,存入<br>#,存入<br>#,入金する<br>#,입금<br>#,wpłacić<br>#,yatırmak<br>#,ENDLINE

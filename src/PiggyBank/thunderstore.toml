@@ -32,11 +32,11 @@ source = "../../LICENSE"
 target = "/"
 
 [[build.copy]]
-source = "../../src/CanadianCuisine/bundles"
+source = "../../src/PiggyBank/bundles"
 target = "plugins/"
 
 [[build.copy]]
-source = "../../src/CanadianCuisine/PiggyBankLocalizedText.csv"
+source = "../../src/PiggyBank/PiggyBankLocalizedText.csv"
 target = "plugins/"
 
 # The following config options only apply when using TCLI to publish to Thunderstore directly:
