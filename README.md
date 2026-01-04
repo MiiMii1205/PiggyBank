@@ -111,4 +111,4 @@ Ehm, no? Nothing is stopping you. Just don’t say you weren’t warned.
 
 ## I found an item that doesn't get stored correctly. Can you fix it? ##
 
-If you find any bugs or incompatible mods, please open an issue in the repo with as much detail as possible. We'll respond as soon as possible. 
+If you find any bugs or incompatible mods, please [open an issue in the repo](https://github.com/MiiMii1205/PiggyBank/issues/new) with as much detail as possible. We'll respond as soon as possible. 

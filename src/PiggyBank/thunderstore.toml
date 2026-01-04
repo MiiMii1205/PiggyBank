@@ -8,7 +8,7 @@ repository = "https://thunderstore.io"
 namespace = "OracleTeam"
 name = "PiggyBank"
 description = "A persistent item bank for PEAK that lets you save one item between runs"
-websiteUrl = "" # TODO: Add a link to your mod repository here (optional)
+websiteUrl = "https://github.com/MiiMii1205/PiggyBank" # TODO: Add a link to your mod repository here (optional)
 containsNsfwContent = false
 
 [package.dependencies]
