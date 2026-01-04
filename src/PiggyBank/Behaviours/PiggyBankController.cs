@@ -15,10 +15,18 @@ public class PiggyBankController: Item
         base.AddPhysics();
         rig.sleepThreshold = 0f;
     }
-    
+
     public override void Interact(Character interactor)
     {
-        PiggyBankUIManager.instance.OpenPîggyBankScreen(PiggyBankReference.GetFromBackpackItem(this));
+        if (this.itemState == ItemState.InBackpack)
+        {
+            base.Interact(interactor);
+        }
+        else
+        {
+            PiggyBankUIManager.instance.OpenPîggyBankScreen(PiggyBankReference.GetFromBackpackItem(this));
+        }
+
     }
 
     public void ReleaseInteract(Character interactor)
@@ -28,16 +36,6 @@ public class PiggyBankController: Item
     public void PickUpPiggyBank(Character interactor)
     {
         base.Interact(interactor);
-    }
-    public override void Awake()
-    {
-        base.Awake();
-        OnPrimaryFinishedCast += OpenPiggyBank;
-    }
-
-    private void OpenPiggyBank()
-    {
-        PiggyBankUIManager.instance.OpenPîggyBankScreen(PiggyBankReference.GetFromBackpackItem(this));
     }
     
     private void DisableVisuals()
@@ -52,7 +50,7 @@ public class PiggyBankController: Item
     
     private static bool HasSpace()
     {
-        return Plugin.IsBankFree();
+        return Plugin.IsBankFree;
     }
 
     public override string GetInteractionText()
@@ -126,8 +124,6 @@ public class PiggyBankController: Item
                 items.EquipSlot(Optionable<byte>.None);
             }
             
-            Plugin.ClearBank();
-
         }
     
     }

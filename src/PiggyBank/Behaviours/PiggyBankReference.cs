@@ -4,7 +4,7 @@ using Zorro.Core.Serizalization;
 
 namespace PiggyBank.Behaviours;
 
-public class PiggyBankReference: IBinarySerializable
+public struct PiggyBankReference: IBinarySerializable
 {
     public Transform locationTransform;
 

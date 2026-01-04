@@ -8,31 +8,26 @@ namespace PiggyBank.Behaviours.GUI;
 public class PiggyBankZone : UIWheelSlice, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
     public RawImage image;
-    private PiggyBankScreen piggyBankScreen;
-    private PiggyBankReference piggyBank;
-
-    private ItemSlot itemSlot;
 
     private int cookedAmount;
     private bool hasItem;
-    private bool isPiggyBankZone;
+    private bool isDepositZone;
+
+    private ItemSlot itemSlot;
+    private PiggyBankReference piggyBank;
+    private PiggyBankScreen piggyBankScreen;
     public byte piggyBankSlot { get; private set; }
 
     private bool canInteract
     {
         get
         {
-            if (isPiggyBankExit)
-            {
-                return true;
-            }          
-            
-            if (isPiggyBankPickup && piggyBank.TryGetPiggyBankItem(out var pg) && pg.itemState != ItemState.Held)
+            if (isPiggyBankPickup)
             {
                 return true;
             }
 
-            if (isPiggyBankZone)
+            if (isDepositZone)
             {
                 return true;
             }
@@ -41,7 +36,8 @@ public class PiggyBankZone : UIWheelSlice, IPointerEnterHandler, IEventSystemHan
             {
                 if (Character.localCharacter.data.currentItem != null)
                 {
-                    return Character.localCharacter.data.currentItem.UIData.canBackpack;
+                    return Character.localCharacter.data.currentItem.UIData.canBackpack &&
+                           Character.localCharacter.data.currentItem is not PiggyBankController;
                 }
 
                 return false;
@@ -51,25 +47,154 @@ public class PiggyBankZone : UIWheelSlice, IPointerEnterHandler, IEventSystemHan
         }
     }
 
-    public bool isPiggyBankExit => piggyBankSlot == byte.MaxValue;
-    public bool isPiggyBankPickup => piggyBankSlot == (byte.MaxValue - 1);
+    public bool isPiggyBankPickup => piggyBankSlot == byte.MaxValue;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Hover();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Dehover();
+    }
+
+
+    private void UpdateInteractable()
+    {
+        button.interactable = canInteract;
+    }
+
+    public void InitItemSlot(PiggyBankReference pg, PiggyBankScreen pbs)
+    {
+        SharedInit(pg, pbs);
+        piggyBankSlot = 0;
+
+        Item item = null;
+        itemSlot ??= new ItemSlot(piggyBankSlot);
+
+        if (!Plugin.IsBankFree)
+        {
+            var itemData = Plugin.BankedItemData;
+
+            itemSlot.SetItem(itemData.prefab, itemData.data);
+            item = itemSlot.prefab;
+        }
+
+        SetItemIcon(item, itemSlot.data);
+        UpdateInteractable();
+    }
+
+    private void SharedInit(PiggyBankReference pgRef, PiggyBankScreen screen)
+    {
+        piggyBank = pgRef;
+        piggyBankScreen = screen;
+
+        if (true)
+        {
+            if (piggyBankSlot == byte.MaxValue)
+            {
+                base.gameObject.SetActive(value: true);
+            }
+
+            SetItemIcon(null, null);
+        }
+    }
+
+    private void SetItemIcon(Item iconHolder, ItemInstanceData itemInstanceData)
+    {
+        if (iconHolder == null)
+        {
+            if (image != null)
+            {
+                image.enabled = false;
+            }
+
+            hasItem = false;
+        }
+        else
+        {
+            if (image != null)
+            {
+                image.enabled = true;
+                image.texture = iconHolder.UIData.GetIcon();
+            }
+
+            hasItem = true;
+        }
+
+        UpdateCookedAmount(iconHolder, itemInstanceData);
+    }
+
+    private void UpdateCookedAmount(Item? item, ItemInstanceData? itemInstanceData)
+    {
+        IntItemData value;
+
+        if (item == null || itemInstanceData == null)
+        {
+            cookedAmount = 0;
+            if (image != null)
+            {
+                image.color = Color.white;
+            }
+        }
+        else if (itemInstanceData.TryGetDataEntry(DataEntryKey.CookedAmount, out value) &&
+                 cookedAmount != value.Value)
+        {
+            if (image != null)
+            {
+                image.color = Color.white;
+                image.color = ItemCooking.GetCookColor(value.Value);
+            }
+
+            cookedAmount = value.Value;
+        }
+    }
+
+    public void Hover()
+    {
+        if (canInteract)
+        {
+            ZoneData zoneData = default(ZoneData);
+            zoneData.isDepositZone = isDepositZone;
+            zoneData.isPiggyBankPickup = isPiggyBankPickup;
+            zoneData.piggyBankReference = piggyBank;
+            zoneData.slotID = piggyBankSlot;
+            ZoneData zoneData2 = zoneData;
+            piggyBankScreen.Hover(zoneData2);
+        }
+    }
+
+    public void Dehover()
+    {
+        ZoneData zoneData = default(ZoneData);
+        zoneData.isDepositZone = isDepositZone;
+        zoneData.isPiggyBankPickup = piggyBankSlot == byte.MaxValue;
+        zoneData.piggyBankReference = piggyBank;
+        zoneData.slotID = piggyBankSlot;
+        ZoneData zoneData2 = zoneData;
+        piggyBankScreen.Dehover(zoneData2);
+    }
+
+    public void InitPickupPiggyBank(PiggyBankReference pg, PiggyBankScreen pbs)
+    {
+        piggyBankSlot = byte.MaxValue;
+        SharedInit(pg, pbs);
+        UpdateInteractable();
+    }
 
     public struct ZoneData : IEquatable<ZoneData>
     {
-        public int slotID;
-        public bool isPiggyBankZone;
+        public bool isDepositZone;
+        public bool isPiggyBankPickup;
+
         public PiggyBankReference piggyBankReference;
 
-        public bool isPiggyBankExit;
-        public bool isPiggyBankPickup;
+        public byte slotID;
 
         public bool Equals(ZoneData other)
         {
-            if (isPiggyBankExit == other.isPiggyBankExit)
-            {
-                return slotID == other.slotID;
-            }
-            else if (isPiggyBankPickup == other.isPiggyBankPickup)
+            if (isPiggyBankPickup == other.isPiggyBankPickup)
             {
                 return slotID == other.slotID;
             }
@@ -89,123 +214,7 @@ public class PiggyBankZone : UIWheelSlice, IPointerEnterHandler, IEventSystemHan
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(isPiggyBankExit, isPiggyBankPickup, piggyBankReference, slotID);
+            return HashCode.Combine(isPiggyBankPickup, piggyBankReference, slotID);
         }
-    }
-
-
-    private void UpdateInteractable()
-    {
-        button.interactable = canInteract;
-    }
-
-    public void InitItemSlot(PiggyBankScreen piggyBankScreen)
-    {
-        piggyBankSlot = 0;
-
-        Item item = null;
-
-        if (!Plugin.IsBankFree())
-        {
-            var itemData = Plugin.BankedItemData;
-            itemSlot = new ItemSlot(0);
-            itemSlot.SetItem(itemData.prefab, itemData.data);
-            item = itemSlot.prefab;
-        }
-
-        SetItemIcon(item, itemSlot.data);
-        UpdateInteractable();
-    }
-
-
-    private void SetItemIcon(Item iconHolder, ItemInstanceData itemInstanceData)
-    {
-        if (iconHolder == null)
-        {
-            if(image != null)
-            {
-                image.enabled = false;
-            }
-            hasItem = false;
-        }
-        else
-        {
-            if (image != null)
-            {
-                image.enabled = true;
-                image.texture = iconHolder.UIData.GetIcon();
-            }
-            
-            hasItem = true;
-        }
-
-        UpdateCookedAmount(iconHolder, itemInstanceData);
-    }
-
-    private void UpdateCookedAmount(Item item, ItemInstanceData itemInstanceData)
-    {
-        IntItemData value;
-
-        if (item == null || itemInstanceData == null)
-        {
-            cookedAmount = 0;
-            image.color = Color.white;
-        }
-        else if (itemInstanceData.TryGetDataEntry<IntItemData>(DataEntryKey.CookedAmount, out value) &&
-                 cookedAmount != value.Value)
-        {
-            image.color = Color.white;
-            image.color = ItemCooking.GetCookColor(value.Value);
-            cookedAmount = value.Value;
-        }
-    }
-
-    public void InitExitPiggyBank(PiggyBankReference piggyBank, PiggyBankScreen piggyBankScreen)
-    {
-        piggyBankSlot = byte.MaxValue;
-        UpdateInteractable();
-    }
-
-    public void Hover()
-    {
-        if (canInteract)
-        {
-            ZoneData sliceData = default(ZoneData);
-            sliceData.isPiggyBankExit = isPiggyBankExit;
-            sliceData.isPiggyBankZone = isPiggyBankZone;
-            sliceData.isPiggyBankPickup = isPiggyBankPickup;
-            sliceData.piggyBankReference = piggyBank;
-            sliceData.slotID = piggyBankSlot;
-            ZoneData sliceData2 = sliceData;
-            piggyBankScreen.Hover(sliceData2);
-        }
-    }
-
-    public void Dehover()
-    {
-        ZoneData sliceData = default(ZoneData);
-        sliceData.isPiggyBankExit = piggyBankSlot == byte.MaxValue;
-        sliceData.isPiggyBankZone = isPiggyBankZone;
-        sliceData.isPiggyBankPickup = piggyBankSlot == (byte.MaxValue - 1);
-        sliceData.piggyBankReference = piggyBank;
-        sliceData.slotID = piggyBankSlot;
-        ZoneData sliceData2 = sliceData;
-        piggyBankScreen.Dehover(sliceData2);
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Hover();
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        Dehover();
-    }
-
-    public void InitPickupPiggyBank(PiggyBankReference piggyBank, PiggyBankScreen piggyBankScreen)
-    {
-        piggyBankSlot = byte.MaxValue - 1;
-        UpdateInteractable();
     }
 }

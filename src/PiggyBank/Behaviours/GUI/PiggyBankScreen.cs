@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,7 +10,6 @@ namespace PiggyBank.Behaviours.GUI;
 public class PiggyBankScreen: UIWheel
 {
     public PiggyBankZone piggyZone;
-    public PiggyBankZone exitZone;
     public PiggyBankZone pickupZone;
 
     public TextMeshProUGUI chosenItemText;
@@ -19,7 +19,16 @@ public class PiggyBankScreen: UIWheel
     public PiggyBankReference piggyBank;
 
     public RawImage currentlyHeldItem;
+    public Image invalidItemIndicator;
     private int currentlyHeldItemCookedAmount;
+
+    private void Awake()
+    {
+        chosenItemText.font = Plugin.DarumaDropOne;
+        chosenItemText.lineSpacing = -50f;
+        chosenItemText.fontSharedMaterial =
+            chosenItemText.fontMaterial = chosenItemText.material = Plugin.DarumaDropOneShadowMaterial;
+    }
 
     public void InitWheel(PiggyBankReference pg)
     {
@@ -27,11 +36,10 @@ public class PiggyBankScreen: UIWheel
         chosenZone = Optionable<PiggyBankZone.ZoneData>.None;
         chosenItemText.text = "";
         
-        piggyZone.InitItemSlot(this);
+        piggyZone.InitItemSlot(pg,this);
         
         base.gameObject.SetActive(value: true);
         
-        exitZone.InitExitPiggyBank(pg, this);
         pickupZone.InitPickupPiggyBank(pg, this);
         
         if (Character.localCharacter.data.currentItem != null &&
@@ -47,6 +55,9 @@ public class PiggyBankScreen: UIWheel
             UpdateCookedAmount(null);
             currentlyHeldItem.enabled = false;
         }
+
+        invalidItemIndicator.enabled = !Plugin.IsBankItemValid;
+        
     }
 
     private void UpdateCookedAmount(Item item)
@@ -83,7 +94,7 @@ public class PiggyBankScreen: UIWheel
             
         }
 
-        if (chosenZone.IsSome && !chosenZone.Value.isPiggyBankExit && !piggyZone.image.enabled)
+        if (chosenZone.IsSome && !chosenZone.Value.isPiggyBankPickup && !piggyZone.image.enabled)
         {
             currentlyHeldItem.transform.position  = Vector3.Lerp(currentlyHeldItem.transform.position,
                 piggyZone.transform.GetChild(0).GetChild(0).position, Time.deltaTime * 20f);
@@ -94,6 +105,7 @@ public class PiggyBankScreen: UIWheel
                 Vector3.zero, Time.deltaTime * 20f);
 
         }
+        
         base.Update();
     }
 
@@ -106,7 +118,7 @@ public class PiggyBankScreen: UIWheel
 
         Plugin.Log.LogDebug($"Chose zone {chosenZone.Value.slotID}");
 
-        Item item;
+        Item? item = null;
         if (chosenZone.Value.isPiggyBankPickup)
         {
             if (chosenZone.Value.piggyBankReference.TryGetPiggyBankItem(out var pg) && pg.itemState != ItemState.Held)
@@ -114,13 +126,18 @@ public class PiggyBankScreen: UIWheel
                 pg.PickUpPiggyBank(Character.localCharacter);
             }
 
-        }  else if (chosenZone.Value.isPiggyBankZone)
+        }  else if (chosenZone.Value.isDepositZone)
         {
             TryDeposit();
         }
-        else if (!Plugin.IsBankFree() && Plugin.WithdrawFromBank(out item))
+        else if (!Plugin.IsBankFree && Plugin.WithdrawFromBank(out item))
         {
+
+            item = item ?? throw new NullReferenceException(nameof(item));
+            
             item.Interact(Character.localCharacter);
+
+            Plugin.ClearBank();
         }
         else if (Character.localCharacter.data.currentItem)
         {
@@ -138,18 +155,11 @@ public class PiggyBankScreen: UIWheel
 
     public void Hover(PiggyBankZone.ZoneData zoneData)
     {
-        if (zoneData.isPiggyBankExit)
-        {
-            chosenItemText.text = LocalizedText.GetText("BACK");
-            chosenZone = Optionable<PiggyBankZone.ZoneData>.Some(zoneData);
-            return;
-        }       
-        
         if (zoneData.isPiggyBankPickup)
         {
             if (zoneData.piggyBankReference.TryGetPiggyBankItem(out var pg) && pg.itemState != ItemState.Held)
             {
-                chosenItemText.text = LocalizedText.GetText("PICKUP");
+                chosenItemText.text = LocalizedText.GetText("CARRY").Replace("#", pg.GetItemName());
                 chosenZone = Optionable<PiggyBankZone.ZoneData>.Some(zoneData);
             }
             else
@@ -161,7 +171,7 @@ public class PiggyBankScreen: UIWheel
             return;
         }
 
-        if (zoneData.isPiggyBankZone)
+        if (zoneData.isDepositZone)
         {
             var currentItem = Character.localCharacter.data.currentItem;
             
@@ -181,7 +191,7 @@ public class PiggyBankScreen: UIWheel
         
         bool flag = false;
 
-        if (Plugin.IsBankFree() && Character.localCharacter.data.currentItem)
+        if (Plugin.IsBankFree && Character.localCharacter.data.currentItem)
         {
             if (Character.localCharacter.data.currentItem)
             {
@@ -194,7 +204,7 @@ public class PiggyBankScreen: UIWheel
         {
             var data = Plugin.BankedItemData;
 
-            Item prefab = data.prefab;
+            Item? prefab = data.prefab;
             
             if (prefab != null)
             {
@@ -226,11 +236,11 @@ public class PiggyBankScreen: UIWheel
         
         if (!(gamepadVector.sqrMagnitude < 0.5f))
         {
-            float num2 = Vector3.Angle(gamepadVector, exitZone.GetUpVector());
+            float num2 = Vector3.Angle(gamepadVector, pickupZone.GetUpVector());
             
             if (piggyBankZone == null || num2 < num)
             {
-                piggyBankZone = exitZone;
+                piggyBankZone = pickupZone;
                 num = num2;
             }
 
@@ -242,13 +252,6 @@ public class PiggyBankScreen: UIWheel
                 num = num2;
             }
             
-            num2 = Vector3.Angle(gamepadVector, pickupZone.GetUpVector());
-            
-            if (piggyBankZone == null || num2 < num)
-            {
-                piggyBankZone = pickupZone;
-                num = num2;
-            }
         }
 
         if (piggyBankZone != null)

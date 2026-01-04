@@ -25,7 +25,7 @@ public class PiggyBankUIManager : MonoBehaviour
 
     public void OpenPîggyBankScreen(PiggyBankReference backpackReference)
     {
-        if (!piggyBankActive && !GUIManager.instance.wheelActive && !GUIManager.instance.windowBlockingInput)
+        if (!GUIManager.instance.wheelActive && !GUIManager.instance.windowBlockingInput)
         {
             Character.localCharacter.data.usingBackpackWheel = true;
             piggyBankScreen.InitWheel(backpackReference);
