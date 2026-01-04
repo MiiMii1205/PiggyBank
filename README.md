@@ -15,15 +15,15 @@ Once deposited, the item stays available across future runs until you withdraw i
 
 This is a **legendary** porcelain piggy bank item that you can encounter in **any luggage**.
 
-- Pretty light when empty
-- Gets heavier when full (based on whatever is stored inside)
-- Can be carried in your inventory or in a backpack
+- Pretty light when empty;
+- Gets heavier when full (based on whatever is stored inside);
+- Can be carried in your inventory or in a backpack.
 
 ## 🔁 How it works ##
 
 Whenever you find a piggy bank, you can do one of two things: 
 
-- [_Deposit_](#-deposit-an-item) an item
+- [_Deposit_](#-deposit-an-item) an item;
 - [_Withdraw_](#-withdraw-an-item) a stored item.
 
 Each player has their own personal piggy bank storage. Stored items are **not shared** between players.
@@ -32,8 +32,8 @@ Each player has their own personal piggy bank storage. Stored items are **not sh
 
 If you don't already have a stored item, you can deposit the item you're currently holding.
 
-1. Open the piggy bank while holding your item
-2. Place it inside
+1. Open the piggy bank while holding your item;
+2. Place it inside;
 3. Done! It's now saved to your persistent bank.
 
 As long as you don't withdraw, it will stay in your bank even after the run has ended.
@@ -42,8 +42,8 @@ As long as you don't withdraw, it will stay in your bank even after the run has 
 
 To withdraw your stored item:
 
-1. Open any piggy banks like a backpack 
-2. Take your stored item out 
+1. Open any piggy banks like a backpack;
+2. Take your stored item out.
 
 Alternatively, you can **break** a piggy bank by throwing it at something hard. This will release your stored item remotely.
 
@@ -65,8 +65,8 @@ This happens when PiggyBank cannot identify your stored item.
 
 It usually happens when:
 
-- Your stored item comes from a mod
-- That mod is disabled and/or missing
+- Your stored item comes from a mod;
+- That mod is disabled and/or missing.
 
 Note that your stored item is **not lost yet**. PiggyBank just doesn't know what kind of item it is.
 
