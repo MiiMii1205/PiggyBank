@@ -59,7 +59,7 @@ Alternatively, you can **break** a piggy bank by throwing it at something hard. 
 
 Yes! Any item that can be backpacked can be deposited (except **piggy banks**, of course!)
 
-## HELP! My item turned into a red cripsberry! What's happening?!? ##
+## HELP! My item turned into a Red Crispberry! What's happening?!? ##
 
 This happens when PiggyBank cannot identify your stored item.
 
@@ -80,7 +80,7 @@ As long as you don't withdraw it, your stored item should be back whenever you r
 </mark>
 </p>
 
-... but if you don't really care, you can definitely take it out. Enjoy the free crispberry!
+... but if you don't really care, you can definitely take it out. Enjoy the free Crispberry!
 
 ## I play with many different friend groups with different mod setups. Is there a way to deal with that? ##
 
