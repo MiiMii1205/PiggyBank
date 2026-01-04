@@ -23,8 +23,8 @@ This is a **legendary** porcelain piggy bank item that you can encounter in **an
 
 Whenever you find a piggy bank, you can do one of two things: 
 
-- _Deposit_ an item
-- _Withdraw_ a stored item.
+- [_Deposit_](#-deposit-an-item) an item
+- [_Withdraw_](#-withdraw-an-item) a stored item.
 
 Each player has their own personal piggy bank storage. Stored items are **not shared** between players.
 
