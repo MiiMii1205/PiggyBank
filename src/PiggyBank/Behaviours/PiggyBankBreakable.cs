@@ -21,7 +21,7 @@ public class PiggyBankBreakable : Breakable
     {
         if (obj == item)
         {
-            m_justThrown = true;    
+            m_justThrown = true;
         }
     }
 
@@ -33,16 +33,19 @@ public class PiggyBankBreakable : Breakable
         {
             m_justThrown = false;
         }
+
         base.OnCollisionEnter(collision);
     }
-    
+
     public override void Break(Collision coll)
     {
-        if (this.item is PiggyBankController && m_justThrown && this.item.lastThrownCharacter.IsLocal)
+        if (this.item is PiggyBankController && m_justThrown && this.item.lastThrownCharacter.IsLocal &&
+            !this.item.lastThrownCharacter.data.dead && !this.item.lastThrownCharacter.data.fullyPassedOut)
         {
             // If there's an item in the bank then spawn it
 
-            if (!Plugin.IsBankFree && Plugin.WithdrawFromBank(out var i, false, transform.position + coll.contacts[0].normal))
+            if (!Plugin.IsBankFree &&
+                Plugin.WithdrawFromBank(out var i, false, transform.position + coll.contacts[0].normal))
             {
                 i = i ?? throw new NullReferenceException(nameof(i));
                 i.rig.linearVelocity = this.item.rig.linearVelocity;
@@ -51,15 +54,14 @@ public class PiggyBankBreakable : Breakable
                 Plugin.ClearBank();
             }
         }
-        
+
         base.Break(coll);
     }
-    
+
     [PunRPC]
     public void RPC_NonItemBreak()
     {
         // Stupid Photon being stupid
         base.RPC_NonItemBreak();
     }
-    
 }
