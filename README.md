@@ -54,7 +54,7 @@ To withdraw your stored item:
 
 ![Piggy Bank Withdraw](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemWithdraw.png?raw=true)
 
-Alternatively, you can **break** a piggy bank by throwing it at something hard. This will release your stored item remotely.
+Alternatively, you can **break** a piggy bank by throwing it at something hard or dropping it high from above. This will release your stored item remotely.
 
 <p>
 <mark>
