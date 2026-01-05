@@ -45,7 +45,7 @@ If you don't already have a stored item, you can deposit the item you're current
 
 1. Open the piggy bank while holding your item
 2. Place it inside
-3. Done! It's now saved to your persistent bank
+3. Done! It's now saved to your persistent stored item slot
 
 ![Piggy Bank Deposit](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemDeposit2.png?raw=true)
 
