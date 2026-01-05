@@ -145,14 +145,13 @@ public partial class Plugin : BaseUnityPlugin
     {
         Log = Logger;
 
-        var configDesc = """
-                         The scope of stored items.
-                         You can use this config to have different stored items per profile or keep it globally available.
-                         """;
-
         _itemScope = Config.Bind(
-            "General", "Piggy Bank scope", PiggyBankScopes.GLOBAL, configDesc);
+            "General", "Piggy Bank scope", PiggyBankScopes.GLOBAL, """
+                                                                   The scope of stored items.
+                                                                   You can use this config to have different stored items per profile or keep it globally available.
+                                                                   """);
 
+        // We just ensure that the data we have in memory is valid
         _itemScope.SettingChanged += (_, _) => { _isDirty = true; };
 
         this.LoadBundleWithName("piggybank.peakbundle", bundle =>
@@ -283,7 +282,6 @@ public partial class Plugin : BaseUnityPlugin
                 "SmokeParticle"
             ], piggyBreakVFX);
             
-
             bundle.Mod.RegisterContent();
 
             Log.LogInfo("Piggy bank is loaded!");
@@ -401,12 +399,14 @@ public partial class Plugin : BaseUnityPlugin
         itemPrefab = possibleItems.Count() switch
         {
             1 => possibleItems.First(),
+            // The las fallback. If we can't find the item using its ID then we'll give up
             > 1 => possibleItems.First((t => t.itemID == itemId)),
             _ => itemPrefab
         };
 
         if (itemPrefab == null)
         {
+            Log.LogWarning($"No item named {itemName} were found. Defaulting to a Red Crispberry...");
             _bankedItemValid = false;
             // If we cant find the item, then it means that it came from a mod that isn't available anymore... Defaulting to a red crispberry...
             if (!ItemDatabase.TryGetItem(4, out itemPrefab))
@@ -467,14 +467,20 @@ public partial class Plugin : BaseUnityPlugin
 
             var itemPrefab = FindItemPrefab(itemName, itemID);
 
-            var itemGo = PhotonNetwork.Instantiate("0_Items/" + itemPrefab.name, spawnPosition, Quaternion.identity);
+            var itemGo = PhotonNetwork.Instantiate($"0_Items/{itemPrefab.name}", spawnPosition, Quaternion.identity);
 
             var itemScript = itemGo.GetComponent<Item>();
 
             var dat = new ItemInstanceData();
 
-            dat.Deserialize(deserializer);
-
+            if (_bankedItemValid)
+            {
+                dat.Deserialize(deserializer);
+                
+                // Because we'll instantiate a brand new item, the item data's instance ID needs to be cleared
+                dat.data[DataEntryKey.InstanceID] = DataEntryValue.GetNewFromValue(1);
+            }
+            
             itemScript.SetItemInstanceDataRPC(dat);
 
             if (giveToLocalPlayer)
