@@ -100,7 +100,7 @@ You can change the mod's config to have different stored items per mod profile.
 
 To do that, set **`Piggy Bank Scope`** to `PER_PROFILE`.
 
-> [TIP!]
+> [!TIP]
 > You can change your setting in your mod manager or by using a mod like [ModConfig](https://thunderstore.io/c/peak/p/PEAKModding/ModConfig/).
 > If you want to use your mod manager, you will need to boot the game with the mod enabled first to create the config file.
 
