@@ -13,7 +13,7 @@ Once deposited, the item stays available across future runs until it's withdrawn
 
 <p><img src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/piggybank.png?raw=true" height="256" width="256"/></p>
 
-This is a fragile porcelain piggy bank item that you can encounter during your runs.
+This is a _**fragile**_ porcelain piggy bank item that you can encounter during your runs.
 
 <dl>
 <dt>Weights</dt>
@@ -145,17 +145,17 @@ You can share a piggy bank with others, but everyone still only gets **one item 
 
 ## Can we cook it? ##
 
-Ehm, no? Nothing is stopping you. Just don’t say you weren’t warned.
+**Ehm, no?** Nothing is stopping you. Just don’t say you weren’t warned.
 
 ## Where's the stored item data file? ##
 
 The stored item is saved as a binary file named `.peakpiggybank`.
 Its location depends on your **`Piggy Bank Scope`** setting:
 
-- `GLOBAL` (default): the file is located in the same folder as `peak.exe`, so usually in your steam
+- `GLOBAL` _(default)_: the file is located in the same folder as `peak.exe`, so usually in your steam
   library.
-- `PER_PROFILE`: the file is located inside the `BepInEx` directory of your current profile. You can use the
-  Thunderstore Mod Manager to open your profile folder.
+- `PER_PROFILE`: the file is located inside the `BepInEx` directory of your current profile. Use your mod manager to
+  open your profile folder.
 
 To edit it, you might need a HEX editor... It's not officially supported, so you'll be on your own.
 
