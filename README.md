@@ -72,6 +72,8 @@ Note that your stored item is **not lost yet**. PiggyBank just doesn't know what
 
 If PiggyBank doesn't recognize your stored item, a **warning icon (⚠️)** will appear next to the piggy bank slot when you open it.
 
+<img src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/invalidItem.png?raw=true"/>
+
 As long as you don't withdraw it, your stored item should be back whenever you re-enable/install that mod.
 
 <p>
