@@ -74,8 +74,8 @@ This happens when PiggyBank cannot identify your stored item.
 
 It usually happens when:
 
-- Your stored item comes from a mod;
-- That mod is disabled and/or missing.
+- Your stored item **comes from a mod**;
+- That mod is **disabled** and/or **missing**.
 
 Note that your stored item is **not lost yet**. PiggyBank just doesn't know what kind of item it is.
 
@@ -95,43 +95,50 @@ As long as you don't withdraw it, your stored item should be back whenever you r
 
 ## I play with many different friend groups with different mod setups. Is there a way to deal with that? ##
 
-Yes!
+**Yes!**
 You can change the mod's config to have different stored items per mod profile.
 
-To do that, set **"Piggy Bank Scope"** to `PER_PROFILE`.
+To do that, set **`Piggy Bank Scope`** to `PER_PROFILE`.
 
 > [TIP!]
 > You can change your setting in your mod manager or by using a mod like [ModConfig](https://thunderstore.io/c/peak/p/PEAKModding/ModConfig/).
+> If you want to use your mod manager, you will need to boot the game with the mod enabled first to create the config file.
 
 This is especially useful when playing with different groups or mod lists.
 
 ## Is it safe to leave a piggy bank behind? ##
 
-Yes! Even if you were the last one to interact with it, it will **not** release your stored item unless you deliberately **throw** it.
+**Yes!** 
+Even if you were the last one to interact with it, it will **not** withdraw your stored item.
 
-That also means that if you trip on it or push it using another item, it **shouldn't release any item at all**.
+It can only withdraw your stored item if you deliberately:
+
+- **Throw** the piggy bank;
+- **Drop** the piggy bank from a high place.
+
+So if you trip on it or push it without picking it up, it **won't withdraw any item at all**.
 
 ## Can I store multiple items in the bank? ## 
 
-No, only **one item** can be stored at a time per players.
+**No**, only **one item** can be stored at a time per players.
 
-Even if you get multiple piggy banks, they'll **ALL** contain your stored item.
+Even if you get multiple piggy banks, they'll **ALL** be synced and contain your stored item.
 
-You can share piggy banks, but everyone only gets one item slot.
+You can share a piggy bank with someone else, but everyone only gets one item slot.
 
 ## Can we cook it? ##
 
 Ehm, no? Nothing is stopping you. Just don’t say you weren’t warned.
 
-## Where are the stored item data file? ##
+## Where's the stored item data file? ##
 
 The stored item file is named `.peakpiggybank` and is saved as a binary file.
-Its location depends on your **"Piggy Bank Scope"** setting:
+Its location depends on your **`Piggy Bank Scope`** setting:
 
 - For `GLOBAL` (and by default), the file is located in the same folder as `peak.exe`, so usually inside your steam library. 
-- For `PER_PROFILE`, the file is located inside the "BepInEx" directory of your current profile. You can use the Thunderstore Mod Manager to open your profile folder.
+- For `PER_PROFILE`, the file is located inside the `BepInEx` directory of your current profile. You can use the Thunderstore Mod Manager to open your profile folder.
 
-To edit it, you might need a HEX editor... But you're on your own!
+To edit it, you might need a HEX editor... But you'll be on your own from there...
 
 ## I found an item that doesn't get stored correctly. Can you fix it? ##
 
