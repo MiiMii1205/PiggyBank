@@ -106,7 +106,7 @@ public partial class Plugin : BaseUnityPlugin
         _itemScope.Value switch
         {
             PiggyBankScopes.GLOBAL => Paths.GameRootPath,
-            PiggyBankScopes.PER_PROFILE => Paths.CachePath,
+            PiggyBankScopes.PER_PROFILE => Paths.BepInExRootPath,
             _ => throw new ArgumentOutOfRangeException(nameof(_itemScope))
         };
 

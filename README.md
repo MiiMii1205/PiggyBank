@@ -109,6 +109,16 @@ You can share piggy banks, but everyone only gets one item slot.
 
 Ehm, no? Nothing is stopping you. Just don’t say you weren’t warned.
 
+## Where are the stored item data file? ##
+
+The stored item file is named `.peakpiggybank` and is saved as a binary file.
+Its location depends on the **"Piggy Bank Scope"** setting:
+
+- For `GLOBAL`, the file is located in the same folder as `peak.exe`, so usually inside your steam library. 
+- For `PER_PROFILE`, the file is located inside the "BepInEx" directory of your current profile. You can use the Thunderstore Mod Manager to open your profile folder.
+
+To edit it, you might need a HEX editor... But you're on your own!
+
 ## I found an item that doesn't get stored correctly. Can you fix it? ##
 
-If you find any bugs or incompatible mods, please [open an issue in the repo](https://github.com/MiiMii1205/PiggyBank/issues/new) with as much detail as possible. We'll respond as soon as possible. 
+If you find any bugs or incompatible mods, please [open an issue in the repo](https://github.com/MiiMii1205/PiggyBank/issues/new) with as much detail as possible. We'll respond as soon as possible.
