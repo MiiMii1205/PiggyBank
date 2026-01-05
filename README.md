@@ -28,6 +28,8 @@ Whenever you find a piggy bank, you can do one of two things:
 
 ![Piggy Bank UI](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemDeposit1.png?raw=true)
 
+You can also pick up the piggy bank by using the hand icon at the bottom of the screen.
+
 Each player has their own personal piggy bank storage. Stored items are **not shared** between players.
 
 ## ➕ Deposit an Item ##
@@ -98,6 +100,9 @@ You can change the mod's config to have different stored items per mod profile.
 
 To do that, set **"Piggy Bank Scope"** to `PER_PROFILE`.
 
+> [TIP!]
+> You can change your setting in your mod manager or by using a mod like [ModConfig](https://thunderstore.io/c/peak/p/PEAKModding/ModConfig/).
+
 This is especially useful when playing with different groups or mod lists.
 
 ## Is it safe to leave a piggy bank behind? ##
@@ -121,9 +126,9 @@ Ehm, no? Nothing is stopping you. Just don’t say you weren’t warned.
 ## Where are the stored item data file? ##
 
 The stored item file is named `.peakpiggybank` and is saved as a binary file.
-Its location depends on the **"Piggy Bank Scope"** setting:
+Its location depends on your **"Piggy Bank Scope"** setting:
 
-- For `GLOBAL`, the file is located in the same folder as `peak.exe`, so usually inside your steam library. 
+- For `GLOBAL` (and by default), the file is located in the same folder as `peak.exe`, so usually inside your steam library. 
 - For `PER_PROFILE`, the file is located inside the "BepInEx" directory of your current profile. You can use the Thunderstore Mod Manager to open your profile folder.
 
 To edit it, you might need a HEX editor... But you're on your own!
