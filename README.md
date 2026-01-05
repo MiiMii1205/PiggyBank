@@ -19,6 +19,7 @@ This is a **legendary** porcelain piggy bank item that you can encounter in **an
 - Gets heavier when full (based on whatever is stored inside);
 - Can be carried in your inventory or in a backpack.
 
+
 ## 🔁 How it works ##
 
 Whenever you find a piggy bank, you can do one of two things: 
@@ -53,6 +54,10 @@ To withdraw your stored item:
 2. Take your stored item out.
 
 ![Piggy Bank Withdraw](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemWithdraw.png?raw=true)
+
+> [!TIP]
+> When you have a stored item, you can see its name by hovering the piggy bank, so no need to open it just to check
+what's inside.
 
 Alternatively, you can **break** a piggy bank by throwing it at something hard or dropping it high from above. This will release your stored item remotely.
 
