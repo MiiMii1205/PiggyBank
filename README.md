@@ -65,12 +65,9 @@ To withdraw your stored item:
 
 > [!TIP]
 > When you have a stored item, you can see its name by hovering the piggy bank. No need to open it just to check.
-> ![Stored item name](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/storedItemName.png?raw=true)
-> <br/>
-> It will also show in your inventory and/or your backpack when you hover above it
-> <br/>
-> ![Stored item name inventory](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/inventoryStoredItemName.png?raw=true)
-> ![Stored item name backpack](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/backpackStoredItemName.png?raw=true)
+> <p><img alt="Stored item name" src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/storedItemName.png?raw=true" height="200px" /></p>
+> <p>It will also show in your inventory and/or your backpack when you hover above it</p>
+> <p><img alt="Stored item name inventory" src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/inventoryStoredItemName.png?raw=true" height="200px" /> <img alt="Stored item name backpack" src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/backpackStoredItemName.png?raw=true" height="200px" /></p>
 
 Alternatively, you can **break** a piggy bank by throwing it at something hard or dropping it from high above. This will
 release your stored item at a distance.
