@@ -11,7 +11,7 @@ Once deposited, the item stays available across future runs until you withdraw i
 
 ## 🐷 The Piggy Bank ##
 
-<img src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/piggybank.png?raw=true" height="256" width="256"/>
+<p><img src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/piggybank.png?raw=true" height="256" width="256"/></p>
 
 This is a **legendary** porcelain piggy bank item that you can encounter in **any luggage**.
 
@@ -26,15 +26,20 @@ Whenever you find a piggy bank, you can do one of two things:
 - [_Deposit_](#-deposit-an-item) an item;
 - [_Withdraw_](#-withdraw-an-item) a stored item.
 
+![Piggy Bank UI](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemDeposit1.png?raw=true)
+
 Each player has their own personal piggy bank storage. Stored items are **not shared** between players.
 
 ## ➕ Deposit an Item ##
 
 If you don't already have a stored item, you can deposit the item you're currently holding.
 
+
 1. Open the piggy bank while holding your item;
 2. Place it inside;
 3. Done! It's now saved to your persistent bank.
+
+![Piggy Bank Deposit](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemDeposit2.png?raw=true)
 
 As long as you don't withdraw, it will stay in your bank even after the run has ended.
 
@@ -44,6 +49,8 @@ To withdraw your stored item:
 
 1. Open any piggy banks like a backpack;
 2. Take your stored item out.
+
+![Piggy Bank Withdraw](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemWithdraw.png?raw=true)
 
 Alternatively, you can **break** a piggy bank by throwing it at something hard. This will release your stored item remotely.
 
@@ -72,7 +79,7 @@ Note that your stored item is **not lost yet**. PiggyBank just doesn't know what
 
 If PiggyBank doesn't recognize your stored item, a **warning icon (⚠️)** will appear next to the piggy bank slot when you open it.
 
-<img src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/invalidItem.png?raw=true"/>
+![invalid item marker](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/invalidItem.png?raw=true)
 
 As long as you don't withdraw it, your stored item should be back whenever you re-enable/install that mod.
 
