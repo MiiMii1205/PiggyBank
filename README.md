@@ -6,26 +6,32 @@ A persistent item bank that lets you save **one item between runs**.
 
 ## 📦 What does this mod do? ##
 
-**PiggyBank** adds a legendary piggy bank item to PEAK that allows each player to store **one item persistently**. 
-Once deposited, the item stays available across future runs until you withdraw it.
+**PiggyBank** adds a legendary piggy bank item to **PEAK** that allows you to store **one item persistently**.
+Once deposited, the item stays available across future runs until it's withdrawn.
 
 ## 🐷 The Piggy Bank ##
 
 <p><img src="https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/piggybank.png?raw=true" height="256" width="256"/></p>
 
-This is a **legendary** porcelain piggy bank item that you can encounter in **any luggage**.
+This is a fragile porcelain piggy bank item that you can encounter during your runs.
 
-- Pretty light when empty;
-- Gets heavier when full (based on whatever is stored inside);
-- Can be carried in your inventory or in a backpack.
-
+<dl>
+<dt>Weights</dt>
+<dd>1 + whatever is inside</dd>
+<dt>Rarity</dt>
+<dd>Legendary</dd>
+<dt>Spawns at</dt>
+<dd>Any luggage</dd>
+<dt>Tags</dt>
+<dd>None</dd>
+</dl>
 
 ## 🔁 How it works ##
 
-Whenever you find a piggy bank, you can do one of two things: 
+Whenever you find a piggy bank, you can do one of two things:
 
-- [_Deposit_](#-deposit-an-item) an item;
-- [_Withdraw_](#-withdraw-an-item) a stored item.
+- [_Deposit_](#-deposit-an-item) an item
+- [_Withdraw_](#-withdraw-an-item) a stored item
 
 ![Piggy Bank UI](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemDeposit1.png?raw=true)
 
@@ -37,29 +43,37 @@ Each player has their own personal piggy bank storage. Stored items are **not sh
 
 If you don't already have a stored item, you can deposit the item you're currently holding.
 
-
-1. Open the piggy bank while holding your item;
-2. Place it inside;
-3. Done! It's now saved to your persistent bank.
+1. Open the piggy bank while holding your item
+2. Place it inside
+3. Done! It's now saved to your persistent bank
 
 ![Piggy Bank Deposit](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemDeposit2.png?raw=true)
 
-As long as you don't withdraw, it will stay in your bank even after the run has ended.
+As long as it's not withdrawn, it will then stay even after the run has ended.
+
+> [!NOTE]
+> Only items that can be placed in a backpack can be deposited. Piggy banks themselves cannot be deposited.
 
 ## ➖ Withdraw an Item ##
 
 To withdraw your stored item:
 
-1. Open any piggy banks like a backpack;
-2. Take your stored item out.
+1. Open **any** piggy banks like a backpack
+2. Take your stored item out
 
 ![Piggy Bank Withdraw](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/itemWithdraw.png?raw=true)
 
 > [!TIP]
-> When you have a stored item, you can see its name by hovering the piggy bank, so no need to open it just to check
-what's inside.
+> When you have a stored item, you can see its name by hovering the piggy bank. No need to open it just to check.
+> ![Stored item name](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/storedItemName.png?raw=true)
+> <br/>
+> It will also show in your inventory and/or your backpack when you hover above it
+> <br/>
+> ![Stored item name inventory](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/inventoryStoredItemName.png?raw=true)
+> ![Stored item name backpack](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/backpackStoredItemName.png?raw=true)
 
-Alternatively, you can **break** a piggy bank by throwing it at something hard or dropping it high from above. This will release your stored item remotely.
+Alternatively, you can **break** a piggy bank by throwing it at something hard or dropping it from high above. This will
+release your stored item at a distance.
 
 <p>
 <mark>
@@ -71,7 +85,7 @@ Alternatively, you can **break** a piggy bank by throwing it at something hard o
 
 ## Can I deposit an item from another mod? ##
 
-Yes! Any item that can be backpacked can be deposited (except **piggy banks**, of course!)
+Yes! Any item that can be placed in a backpack can be deposited (except **piggy banks**, of course!)
 
 ## HELP! My item turned into a Red Crispberry! What's happening?!? ##
 
@@ -84,11 +98,12 @@ It usually happens when:
 
 Note that your stored item is **not lost yet**. PiggyBank just doesn't know what kind of item it is.
 
-If PiggyBank doesn't recognize your stored item, a **warning icon (⚠️)** will appear next to the piggy bank slot when you open it.
+If PiggyBank doesn't recognize your stored item, a **warning icon (⚠️)** will appear next to the piggy bank slot when
+you open it.
 
 ![invalid item marker](https://github.com/MiiMii1205/PiggyBank/blob/master/imgs/invalidItem.png?raw=true)
 
-As long as you don't withdraw it, your stored item should be back whenever you re-enable/install that mod.
+As long as you **don't withdraw** it, your stored item should be back whenever you re-enable/install that mod.
 
 <p>
 <mark>
@@ -101,25 +116,25 @@ As long as you don't withdraw it, your stored item should be back whenever you r
 ## I play with many different friend groups with different mod setups. Is there a way to deal with that? ##
 
 **Yes!**
-You can change the mod's config to have different stored items per mod profile.
+You can configure PiggyBank to have different stored items per mod profile.
 
 To do that, set **`Piggy Bank Scope`** to `PER_PROFILE`.
 
 > [!TIP]
-> You can change your setting in your mod manager or by using a mod like [ModConfig](https://thunderstore.io/c/peak/p/PEAKModding/ModConfig/).
-> If you want to use your mod manager, you will need to boot the game with the mod enabled first to create the config file.
+> You can change your setting in your mod manager or by using a mod
+> like [ModConfig](https://thunderstore.io/c/peak/p/PEAKModding/ModConfig/).
+> If you want to use your mod manager, you will need to boot the game with the mod enabled first to create the config
+> file.
 
 This is especially useful when playing with different groups or mod lists.
 
 ## Is it safe to leave a piggy bank behind? ##
 
-**Yes!** 
-Even if you were the last one to interact with it, it will **not** withdraw your stored item.
+**Yes!**
+The piggy bank will **not** withdraw your stored item unless you deliberately:
 
-It can only withdraw your stored item if you deliberately:
-
-- **Throw** the piggy bank;
-- **Drop** the piggy bank from a high place.
+- **Throw** it
+- **Drop** it from a high place.
 
 So if you trip on it or push it without picking it up, it **won't withdraw any item at all**.
 
@@ -129,7 +144,7 @@ So if you trip on it or push it without picking it up, it **won't withdraw any i
 
 Even if you get multiple piggy banks, they'll **ALL** be synced and contain your stored item.
 
-You can share a piggy bank with someone else, but everyone only gets one item slot.
+You can share a piggy bank with others, but everyone still only gets **one item slot**.
 
 ## Can we cook it? ##
 
@@ -137,14 +152,18 @@ Ehm, no? Nothing is stopping you. Just don’t say you weren’t warned.
 
 ## Where's the stored item data file? ##
 
-The stored item file is named `.peakpiggybank` and is saved as a binary file.
+The stored item is saved as a binary file named `.peakpiggybank`.
 Its location depends on your **`Piggy Bank Scope`** setting:
 
-- For `GLOBAL` (and by default), the file is located in the same folder as `peak.exe`, so usually inside your steam library. 
-- For `PER_PROFILE`, the file is located inside the `BepInEx` directory of your current profile. You can use the Thunderstore Mod Manager to open your profile folder.
+- `GLOBAL` (default): the file is located in the same folder as `peak.exe`, so usually in your steam
+  library.
+- `PER_PROFILE`: the file is located inside the `BepInEx` directory of your current profile. You can use the
+  Thunderstore Mod Manager to open your profile folder.
 
-To edit it, you might need a HEX editor... But you'll be on your own from there...
+To edit it, you might need a HEX editor... It's not officially supported, so you'll be on your own.
 
 ## I found an item that doesn't get stored correctly. Can you fix it? ##
 
-If you find any bugs or incompatible mods, please [open an issue in the repo](https://github.com/MiiMii1205/PiggyBank/issues/new) with as much detail as possible. We'll respond as soon as possible.
+If you find any bugs or incompatible mods,
+please [open an issue in the repo](https://github.com/MiiMii1205/PiggyBank/issues/new) with as much detail as possible.
+We'll respond as soon as possible.
