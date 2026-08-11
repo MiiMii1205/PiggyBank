@@ -59,9 +59,9 @@ public class PiggyBankBreakable : Breakable
     }
 
     [PunRPC]
-    public void RPC_NonItemBreak()
+    public void RPC_BroadcastBreak()
     {
         // Stupid Photon being stupid
-        base.RPC_NonItemBreak();
+        base.RPC_BroadcastBreak();
     }
 }
