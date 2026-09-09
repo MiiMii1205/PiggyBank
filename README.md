@@ -2,6 +2,8 @@
 [![Thunderstore Version](https://img.shields.io/thunderstore/v/OracleTeam/PiggyBank?style=for-the-badge)](https://thunderstore.io/c/peak/p/OracleTeam/PiggyBank/)
 [![Thunderstore Downloads](https://img.shields.io/thunderstore/dt/OracleTeam/PiggyBank?style=for-the-badge)](https://thunderstore.io/c/peak/p/OracleTeam/PiggyBank/)
 [![Thunderstore Likes](https://img.shields.io/thunderstore/likes/OracleTeam/PiggyBank?style=for-the-badge)](https://thunderstore.io/c/peak/p/OracleTeam/PiggyBank/)
+[![GitHub Licences](https://img.shields.io/github/license/MiiMii1205/PiggyBank?style=for-the-badge)](https://github.com/MiiMii1205/PiggyBank)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/MiiMii1205/PiggyBank?style=for-the-badge)](https://github.com/MiiMii1205/PiggyBank/issues/new)
 
 A persistent item bank that lets you save **one item between runs**.
 

@@ -257,7 +257,7 @@ public partial class Plugin : BaseUnityPlugin
                 hasMainInteract = false,
                 mainInteractPrompt = "INSPECT",
                 hasSecondInteract = false,
-                secondaryInteractPrompt = null,
+                secondaryInteractPrompt = "",
                 hasScrollingInteract = false,
                 scrollInteractPrompt = null,
                 canDrop = true,
